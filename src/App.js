@@ -1,10 +1,10 @@
-import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <img src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
+      <Footer />
     </div>
   );
 }
