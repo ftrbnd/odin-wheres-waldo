@@ -38,7 +38,7 @@ const Auth = () => {
             <button onClick={signInWithGoogle}>Sign in with Google</button>
             <button onClick={logOut}>Sign Out</button>
         </div>
-    )
+    );
 };
 
 export default Auth;

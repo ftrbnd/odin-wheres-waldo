@@ -1,9 +1,10 @@
-import Auth from "./components/Auth";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <Auth />
+      <Header />
+      <img src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
     </div>
   );
 }
