@@ -2,10 +2,11 @@ import React from 'react';
 import UserHeader from './UserHeader';
 import styles from '../styles/Nav.module.css';
 import { Link } from 'react-router-dom';
-import { auth } from '../utils/firebase';
+import { useAuth } from '../utils/AuthContext';
 
 const Nav = () => {
-    console.log(auth.currentUser);
+    const { authUser } = useAuth();
+
     return (
         <div className={styles.Nav}>
             <nav>
@@ -16,15 +17,15 @@ const Nav = () => {
                     <Link to='/leaderboard'>
                         <li>Leaderboard</li>
                     </Link>
+                    <Link to='/signin'>
                     {
-                        auth.currentUser ? (
-                            <li> <UserHeader /> </li>
+                        authUser ? (
+                                <li><UserHeader /></li>
                         ) : (
-                            <Link to='/signin'>
                                 <li>Sign In</li>
-                            </Link>
                         )
                     }
+                    </Link>
                 </ul>
             </nav>
         </div>
