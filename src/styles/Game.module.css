@@ -3,3 +3,7 @@
 .mainImage {
     width: 100vw;
 }
+
+.mainImage:hover {
+    cursor: pointer;
+}

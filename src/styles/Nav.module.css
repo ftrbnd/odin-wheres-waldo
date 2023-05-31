@@ -19,7 +19,7 @@ nav {
     list-style: none;
 }
 
-li:hover {
+.links li:hover {
     font-weight: bold;
 }
 

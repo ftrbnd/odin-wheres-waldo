@@ -14,8 +14,10 @@ const Game = () => {
         // const navHeight = document.querySelector(`.${navStyles.Nav}`).clientHeight;
         // setX(e.pageX / imgRef.current.offsetWidth);
         // setY((e.pageY - navHeight) / imgRef.current.offsetHeight);
-        setX(e.pageX);
-        setY(e.pageY);
+
+        // prevent menu from going off-screen on edges
+        imgRef.current.offsetWidth - e.pageX < 144 ? setX(e.pageX - 144) : setX(e.pageX);
+        imgRef.current.offsetHeight - e.pageY < 143 ? setY(e.pageY - 143) : setY(e.pageY);
 
         console.log(`Clicked on [${x}, ${y}]`);
     };
