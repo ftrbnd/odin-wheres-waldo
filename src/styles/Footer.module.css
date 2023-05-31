@@ -1,0 +1,10 @@
+.Footer {
+    background-color: navy;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.Footer a:hover {
+    color: gray;
+}
