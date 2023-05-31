@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import styles from '../styles/SelectMenu.module.css';
 import navStyles from '../styles/Nav.module.css';
 
-const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords }) => {
+const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess }) => {
     const targetsRef = useRef([]);
 
     useEffect(() => {
@@ -34,9 +34,9 @@ const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeigh
             && yRange[0] <= yValue
             && yValue <= yRange[1]
         ) {
-            console.log(`Correctly chose ${target[0]}!`);
+            onCorrectGuess(target[0]);
         } else {
-            console.log(`This is not ${target[0]}...`);
+            onWrongGuess(target[0]);
         }
     };
 

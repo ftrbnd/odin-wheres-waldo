@@ -1,9 +1,13 @@
-.Game {}
-
 .mainImage {
     width: 100vw;
 }
 
 .mainImage:hover {
     cursor: pointer;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
 }

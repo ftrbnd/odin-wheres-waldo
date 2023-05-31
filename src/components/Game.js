@@ -6,6 +6,8 @@ const Game = () => {
     const [x, setX] = useState(-1);
     const [y, setY] = useState(-1);
     const [clicked, setClicked] = useState(false);
+    const [correctCount, setCorrectCount] = useState(0);
+    
     const coords = useRef([]);
     const imgRef = useRef();
 
@@ -20,9 +22,29 @@ const Game = () => {
         console.log(`Clicked on [${x}, ${y}]`);
     };
 
+    const handleCorrectGuess = (target) => {
+        setCorrectCount(prevCount => prevCount + 1);
+        // hardcode limit of 3 or use firebase data length? - to check for game end
+        // show popup
+        // add to leaderboard on game end
+
+        console.log(`Found ${target}!`);
+        // display popup
+    };
+
+    const handleWrongGuess = (target) => {
+        console.log(`This is not ${target}...`);
+        // display popup
+    };
+
     return (
         <div className={styles.Game}>
-            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} />
+            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} />
+            <div className={styles.info}>
+                <p>{correctCount} / 3</p>
+                <p>timer</p>
+                <p>targets list</p>
+            </div>
             <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
         </div>
     );
