@@ -1,20 +1,18 @@
 import React, { useRef, useState } from 'react';
 import styles from '../styles/Game.module.css';
-// import navStyles from '../styles/Nav.module.css';
 import SelectMenu from './SelectMenu';
 
 const Game = () => {
     const [x, setX] = useState(-1);
     const [y, setY] = useState(-1);
     const [clicked, setClicked] = useState(false);
+    const coords = useRef([]);
     const imgRef = useRef();
 
     const updateCoords = (e) => {
         setClicked(true);
-        // const navHeight = document.querySelector(`.${navStyles.Nav}`).clientHeight;
-        // setX(e.pageX / imgRef.current.offsetWidth);
-        // setY((e.pageY - navHeight) / imgRef.current.offsetHeight);
 
+        coords.current = [e.pageX, e.pageY];
         // prevent menu from going off-screen on edges
         imgRef.current.offsetWidth - e.pageX < 144 ? setX(e.pageX - 144) : setX(e.pageX);
         imgRef.current.offsetHeight - e.pageY < 143 ? setY(e.pageY - 143) : setY(e.pageY);
@@ -24,7 +22,7 @@ const Game = () => {
 
     return (
         <div className={styles.Game}>
-            <SelectMenu selectedX={x} selectedY={y} wasClicked={clicked} />
+            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} />
             <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
         </div>
     );
