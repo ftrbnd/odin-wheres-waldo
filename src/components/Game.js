@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from '../styles/Game.module.css';
 import SelectMenu from './SelectMenu';
+import { Slide, toast } from 'react-toastify';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -24,17 +25,25 @@ const Game = () => {
 
     const handleCorrectGuess = (target) => {
         setCorrectCount(prevCount => prevCount + 1);
-        // hardcode limit of 3 or use firebase data length? - to check for game end
-        // show popup
-        // add to leaderboard on game end
+        // make sure clicking on a previously guessed character doesn't update correctCount
 
-        console.log(`Found ${target}!`);
-        // display popup
+        notify(`Found ${target}!`, styles.correctGuess);
+
+        // add to leaderboard on game end
     };
 
     const handleWrongGuess = (target) => {
-        console.log(`This is not ${target}...`);
-        // display popup
+        notify(`This is not ${target}...`, styles.wrongGuess);
+    };
+
+    const notify = (text, cssClass) => {
+        toast(text, {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            transition: Slide,
+            draggablePercent: 60,
+            className: cssClass
+        });
     };
 
     return (
