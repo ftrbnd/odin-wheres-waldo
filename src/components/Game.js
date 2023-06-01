@@ -27,22 +27,25 @@ const Game = () => {
         setCorrectCount(prevCount => prevCount + 1);
         // make sure clicking on a previously guessed character doesn't update correctCount
 
-        notify(`Found ${target}!`, styles.correctGuess);
+        notify(`Found ${target}!`, true);
 
         // add to leaderboard on game end
     };
 
     const handleWrongGuess = (target) => {
-        notify(`This is not ${target}...`, styles.wrongGuess);
+        notify(`This is not ${target}...`, false);
     };
 
-    const notify = (text, cssClass) => {
+    const notify = (text, correctGuess) => {
         toast(text, {
             position: toast.POSITION.TOP_CENTER,
             hideProgressBar: true,
             transition: Slide,
             draggablePercent: 60,
-            className: cssClass
+            style: {
+                backgroundColor: `${correctGuess ? 'lightgreen' : 'lightcoral'}`,
+                color: `${correctGuess ? 'gray' : 'white'}`
+            }
         });
     };
 

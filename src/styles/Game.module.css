@@ -11,13 +11,3 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
 }
-
-.correctGuess {
-    background-color: lightgreen;
-    color: gray;
-}
-
-.wrongGuess {
-    background-color: lightcoral;
-    color: white;
-}
