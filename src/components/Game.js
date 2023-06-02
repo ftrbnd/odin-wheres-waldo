@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
 import { TargetsProvider } from '../utils/TargetsContext';
+import useTimer from '../utils/useTimer';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -17,6 +18,8 @@ const Game = () => {
     
     const coords = useRef([]);
     const imgRef = useRef();
+
+    const { minutes, seconds } = useTimer();
 
     const updateCoords = (e) => {
         setClicked(true);
@@ -70,7 +73,7 @@ const Game = () => {
                 }
                 <div className={styles.info}>
                     <p>{correctCount} / 3</p>
-                    <p>timer</p>
+                    <p>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</p>
                     <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
                 </div>
                 {showModal && <Modal onClose={() => setShowModal(false)} />}
@@ -79,5 +82,7 @@ const Game = () => {
         </div>
     );
 }
+
+// TODO: on gameComplete: if user is not signed in, then ask for a name to add to leaderboard
 
 export default Game;
