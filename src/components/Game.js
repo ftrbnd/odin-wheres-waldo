@@ -5,6 +5,7 @@ import { Slide, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
+import { TargetsProvider } from '../utils/TargetsContext';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -60,19 +61,21 @@ const Game = () => {
 
     return (
         <div className={styles.Game}>
-            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} onDuplicateGuess={handleDuplicateGuess} />
-            {
-                markers.map(marker => {
-                    return <FontAwesomeIcon key={`${marker[0]}-${marker[1]}`} icon={faLocationPin} beat size="2xl" style={{ color: "#90ee90", position: 'absolute', top: `${marker[1]}px`, left: `${marker[0]}px` }} />
-                })
-            }
-            <div className={styles.info}>
-                <p>{correctCount} / 3</p>
-                <p>timer</p>
-                <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
-            </div>
-            {showModal && <Modal onClose={() => setShowModal(false)} />}
-            <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
+            <TargetsProvider>
+                <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} onDuplicateGuess={handleDuplicateGuess} />
+                {
+                    markers.map(marker => {
+                        return <FontAwesomeIcon key={`${marker[0]}-${marker[1]}`} icon={faLocationPin} beat size="2xl" style={{ color: "#90ee90", position: 'absolute', top: `${marker[1]}px`, left: `${marker[0]}px` }} />
+                    })
+                }
+                <div className={styles.info}>
+                    <p>{correctCount} / 3</p>
+                    <p>timer</p>
+                    <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
+                </div>
+                {showModal && <Modal onClose={() => setShowModal(false)} />}
+                <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
+            </TargetsProvider>
         </div>
     );
 }

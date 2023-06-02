@@ -1,26 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { firestore } from '../utils/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import React, { useRef } from 'react';
 import styles from '../styles/SelectMenu.module.css';
 import navStyles from '../styles/Nav.module.css';
+import { useTargets } from '../utils/TargetsContext';
 
 const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess, onDuplicateGuess }) => {
-    const targetsRef = useRef([]);
+    const { targets } = useTargets();
     const correctGuesses = useRef([]);
-
-    useEffect(() => {
-        const data = [];
-
-        async function fetchTargets() {
-            const querySnapshot = await getDocs(collection(firestore, 'targets'));
-            querySnapshot.forEach(doc => {
-                data.push([doc.id, doc.data()]);
-            });
-        };
-        
-        fetchTargets();
-        targetsRef.current = data;
-    }, []);
 
     const checkSelection = (target) => {
         const xRange = target[1].xRange;
@@ -53,7 +38,7 @@ const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeigh
             zIndex: 1000
         }}>
             <ul className={styles.targets}> {
-                targetsRef.current.map(target => 
+                targets.current.map(target => 
                     <li className={styles.target} key={target[0]} onClick={() => checkSelection(target)}>{ target[0] }</li>
                 )
             } </ul>
