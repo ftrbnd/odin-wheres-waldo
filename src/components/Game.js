@@ -4,6 +4,7 @@ import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import Modal from './Modal';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -11,6 +12,7 @@ const Game = () => {
     const [clicked, setClicked] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
     const [markers, setMarkers] = useState([]);
+    const [showModal, setShowModal] = useState(false);
     
     const coords = useRef([]);
     const imgRef = useRef();
@@ -67,8 +69,9 @@ const Game = () => {
             <div className={styles.info}>
                 <p>{correctCount} / 3</p>
                 <p>timer</p>
-                <p>targets list</p>
+                <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
             </div>
+            {showModal && <Modal onClose={() => setShowModal(false)} />}
             <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
         </div>
     );

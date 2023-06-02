@@ -11,3 +11,8 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
 }
+
+p.openModal:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
