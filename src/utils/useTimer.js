@@ -8,7 +8,6 @@ const useTimer = () => {
     const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
-        console.log('timer mounted');
         const intervalId = setInterval(() => {
             setSeconds(prevSec => prevSec + 1);
         }, 1000);
