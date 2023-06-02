@@ -4,8 +4,9 @@ import { collection, getDocs } from 'firebase/firestore';
 import styles from '../styles/SelectMenu.module.css';
 import navStyles from '../styles/Nav.module.css';
 
-const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess }) => {
+const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess, onDuplicateGuess }) => {
     const targetsRef = useRef([]);
+    const correctGuesses = useRef([]);
 
     useEffect(() => {
         const data = [];
@@ -33,8 +34,13 @@ const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeigh
             && xValue <= xRange[1]
             && yRange[0] <= yValue
             && yValue <= yRange[1]
-        ) {
-            onCorrectGuess(target[0]);
+        ) { // valid selection
+            if (!correctGuesses.current.includes(target[0])) { // prevent duplicate selection
+                correctGuesses.current = [...correctGuesses.current, target[0]];
+                onCorrectGuess(target[0]);
+            } else {
+                onDuplicateGuess(target[0]);
+            }
         } else {
             onWrongGuess(target[0]);
         }

@@ -32,12 +32,15 @@ const Game = () => {
 
         notify(`Found ${target}!`, true);
         setMarkers(markers => [...markers, [x, y]]); // note: will be off to the left on targets near the edges
-
         // add to leaderboard once all targets have been selected
     };
 
     const handleWrongGuess = (target) => {
         notify(`This is not ${target}...`, false);
+    };
+
+    const handleDuplicateGuess = (target) => {
+        notify(`You already selected ${target}!`, false);
     };
 
     const notify = (text, correctGuess) => {
@@ -55,7 +58,7 @@ const Game = () => {
 
     return (
         <div className={styles.Game}>
-            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} />
+            <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} onDuplicateGuess={handleDuplicateGuess} />
             {
                 markers.map(marker => {
                     return <FontAwesomeIcon key={`${marker[0]}-${marker[1]}`} icon={faLocationPin} beat size="2xl" style={{ color: "#90ee90", position: 'absolute', top: `${marker[1]}px`, left: `${marker[0]}px` }} />
