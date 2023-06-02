@@ -2,12 +2,15 @@ import React, { useRef, useState } from 'react';
 import styles from '../styles/Game.module.css';
 import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
 
 const Game = () => {
     const [x, setX] = useState(-1);
     const [y, setY] = useState(-1);
     const [clicked, setClicked] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
+    const [markers, setMarkers] = useState([]);
     
     const coords = useRef([]);
     const imgRef = useRef();
@@ -28,8 +31,9 @@ const Game = () => {
         // make sure clicking on a previously guessed character doesn't update correctCount
 
         notify(`Found ${target}!`, true);
+        setMarkers(markers => [...markers, [x, y]]); // note: will be off to the left on targets near the edges
 
-        // add to leaderboard on game end
+        // add to leaderboard once all targets have been selected
     };
 
     const handleWrongGuess = (target) => {
@@ -52,6 +56,11 @@ const Game = () => {
     return (
         <div className={styles.Game}>
             <SelectMenu xPosition={x} yPosition={y} wasClicked={clicked} offsetWidth={imgRef.current?.offsetWidth} offsetHeight={imgRef.current?.offsetHeight} coords={coords} onCorrectGuess={handleCorrectGuess} onWrongGuess={handleWrongGuess} />
+            {
+                markers.map(marker => {
+                    return <FontAwesomeIcon key={`${marker[0]}-${marker[1]}`} icon={faLocationPin} beat size="2xl" style={{ color: "#90ee90", position: 'absolute', top: `${marker[1]}px`, left: `${marker[0]}px` }} />
+                })
+            }
             <div className={styles.info}>
                 <p>{correctCount} / 3</p>
                 <p>timer</p>
