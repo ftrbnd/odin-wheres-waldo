@@ -4,9 +4,10 @@ import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import Modal from './Modal';
+import TargetsModal from './TargetsModal';
 import { TargetsProvider } from '../utils/TargetsContext';
 import useTimer from '../utils/useTimer';
+import GameEndModal from './GameEndModal';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -15,6 +16,7 @@ const Game = () => {
     const [correctCount, setCorrectCount] = useState(0);
     const [markers, setMarkers] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [gameEnd, setGameEnd] = useState(false);
     
     const coords = useRef([]);
     const imgRef = useRef();
@@ -33,12 +35,17 @@ const Game = () => {
     };
 
     const handleCorrectGuess = (target) => {
-        setCorrectCount(prevCount => prevCount + 1);
-        // make sure clicking on a previously guessed character doesn't update correctCount
+        setCorrectCount(prevCount => {
+            const newCount = prevCount + 1;
+
+            if (newCount === 3)
+                setGameEnd(true);
+
+            return newCount;
+        });
 
         notify(`Found ${target}!`, true);
         setMarkers(markers => [...markers, [x, y]]); // note: will be off to the left on targets near the edges
-        // add to leaderboard once all targets have been selected
     };
 
     const handleWrongGuess = (target) => {
@@ -76,13 +83,12 @@ const Game = () => {
                     <p>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</p>
                     <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
                 </div>
-                {showModal && <Modal onClose={() => setShowModal(false)} />}
+                {showModal && <TargetsModal onClose={() => setShowModal(false)} />}
+                {gameEnd && <GameEndModal onClose={() => setGameEnd(false)} minutes={minutes} seconds={seconds} />}
                 <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
             </TargetsProvider>
         </div>
     );
 }
-
-// TODO: on gameComplete: if user is not signed in, then ask for a name to add to leaderboard
 
 export default Game;
