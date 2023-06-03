@@ -1,0 +1,16 @@
+.Leaderboard {}
+
+.Leaderboard h2 {
+    text-align: center;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.entry {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
