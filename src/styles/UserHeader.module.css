@@ -4,3 +4,8 @@
     justify-items: center;
     align-items: center;
 }
+
+.userAvatar {
+    height: 50%;
+    border-radius: 25px;
+}

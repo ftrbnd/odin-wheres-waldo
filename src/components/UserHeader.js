@@ -10,7 +10,7 @@ const UserHeader = () => {
     return (
         <div className={styles.UserHeader}>
             <p>{authUser?.displayName || 'Hello'}</p>
-            { authUser?.photoURL ? <img src={authUser.photoURL} alt='custom user avatar' /> : <FontAwesomeIcon icon={faUser} />}
+            { authUser?.photoURL ? <img className={styles.userAvatar} src={authUser.photoURL} alt='custom user avatar' /> : <FontAwesomeIcon icon={faUser} />}
         </div>
     );
 };
