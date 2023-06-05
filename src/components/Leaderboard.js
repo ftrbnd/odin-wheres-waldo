@@ -1,32 +1,34 @@
 import { collection, getDocs } from 'firebase/firestore';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { firestore } from '../utils/firebase';
 import styles from '../styles/Leaderboard.module.css';
 
 const Leaderboard = () => {
-    const leaderboard = useRef([]);
+    const [leaderboard, setLeaderboard] = useState([]);
 
     useEffect(() => {
-        const data = [];
-
         async function fetchLeaderboard() {
+            const data = [];
+
             const querySnapshot = await getDocs(collection(firestore, 'leaderboard'));
             querySnapshot.forEach(doc => {
                 data.push(doc.data());
             });
+
+            return data;
         }
 
-        fetchLeaderboard();
-        // sort data by shortest time:
-        // data.sort((a, b) => (a.seconds > b.seconds) ? 1 : -1);
-        leaderboard.current = data;
+        fetchLeaderboard().then(data => {
+            data.sort((a, b) => (a.seconds > b.seconds) ? 1 : -1);
+            setLeaderboard(data);
+        });
     }, []);
 
     return (
         <div className={styles.Leaderboard}>
             <h2>Leaderboard</h2>
             <ol className={styles.data}> {
-                leaderboard.current.map(entry =>
+                leaderboard.map(entry =>
                     <li key={entry.date.seconds} className={styles.entry}>
                         <p>Nickname: {entry.nickname}</p>
                         <p>Time: {entry.seconds}</p>
