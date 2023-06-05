@@ -22,21 +22,18 @@ const LogIn = () => {
     }
 
     return (
-        <>
-            <form className={styles.LogIn} onSubmit={signInUser}>
-                <label>
-                    Email
-                    <input type='email' placeholder='user@example.com' onChange={(e) => setEmail(e.target.value)} required />
-                </label>
-                <label>
-                    Password
-                    <input type='password' placeholder='Password...' onChange={(e) => setPassword(e.target.value)} required />
-                </label>
+        <div className={styles.LogIn}>
+            <form className={styles.form} onSubmit={signInUser}>
+                <h2>Log In</h2>
+                <label>Email</label>
+                <input type='email' placeholder='user@example.com' onChange={(e) => setEmail(e.target.value)} required />
+                <label htmlFor='pass'>Password</label>
+                <input id='pass' type='password' placeholder='Password...' onChange={(e) => setPassword(e.target.value)} required />
                 <button type='submit'>Log In</button>
             </form>
             <button onClick={e => signInUserWithGoogle(e)}>Log in with Google</button>
             <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
-        </>
+        </div>
     );
 };
 
