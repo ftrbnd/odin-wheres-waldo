@@ -7,6 +7,8 @@ import UserDetails from "./components/UserDetails";
 import { AuthProvider } from "./utils/AuthContext";
 import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const RouteSwitch = () => {
     return (
@@ -21,6 +23,7 @@ const RouteSwitch = () => {
             <Route path='/user' element={<UserDetails />} />
           </Routes>
         </AuthProvider>
+        <ToastContainer />
       </BrowserRouter>
   );
 };

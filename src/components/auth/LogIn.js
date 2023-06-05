@@ -11,12 +11,14 @@ const LogIn = () => {
 
     const signInUser = async (e) => {
         e.preventDefault();
+
         await signIn(email, password);
+
+        e.target.reset();
     }
 
-    const signInUserWithGoogle = (e) => {
-        e.preventDefault();
-        signInWithGoogle();
+    const signInUserWithGoogle = async () => {
+        await signInWithGoogle();
     }
 
     return (

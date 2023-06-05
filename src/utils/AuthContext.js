@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth, googleProvider } from "./firebase";
 import { useNavigate } from "react-router-dom";
+import { Slide, toast } from 'react-toastify';
 
 export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             navigate('/');
         } catch (e) {
             console.error(e);
+            displayError(e.message);
         }
     };
 
@@ -36,6 +38,7 @@ export const AuthProvider = ({ children }) => {
             navigate('/');
         } catch (e) {
             console.error(e);
+            displayError(e.message);
         }
     };
 
@@ -46,6 +49,7 @@ export const AuthProvider = ({ children }) => {
             navigate('/');
         } catch (e) {
             console.error(e);
+            displayError(e.message);
         }
     };
 
@@ -57,6 +61,7 @@ export const AuthProvider = ({ children }) => {
             navigate('/');
         } catch (e) {
             console.error(e);
+            displayError(e.message);
         }
     };
 
@@ -69,7 +74,18 @@ export const AuthProvider = ({ children }) => {
             console.log(`Successfully updated new display name: ${authUser.displayName}`);
         } catch (e) {
             console.error(e);
+            displayError(e.message);
         }
+    };
+
+    const displayError = (errorMessage) => {
+        toast.error(errorMessage, {
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true,
+            transition: Slide,
+            draggablePercent: 60,
+            autoClose: 4000
+        });
     };
 
     return (
