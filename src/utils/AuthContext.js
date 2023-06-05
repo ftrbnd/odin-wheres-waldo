@@ -71,6 +71,14 @@ export const AuthProvider = ({ children }) => {
                 displayName: name
             });
 
+            toast.success('Success! Refresh to view change', {
+                position: toast.POSITION.TOP_CENTER,
+                hideProgressBar: true,
+                transition: Slide,
+                draggablePercent: 60,
+                autoClose: 4000
+            });
+
             console.log(`Successfully updated new display name: ${authUser.displayName}`);
         } catch (e) {
             console.error(e);
