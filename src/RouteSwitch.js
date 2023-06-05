@@ -4,8 +4,9 @@ import Nav from "./components/Nav";
 import App from "./App";
 import Leaderboard from "./components/Leaderboard";
 import UserDetails from "./components/UserDetails";
-import AuthPage from "./components/auth/AuthPage";
 import { AuthProvider } from "./utils/AuthContext";
+import SignUp from "./components/auth/SignUp";
+import LogIn from "./components/auth/LogIn";
 
 const RouteSwitch = () => {
     return (
@@ -14,7 +15,8 @@ const RouteSwitch = () => {
           <Nav />
           <Routes>
             <Route path='/' element={<App />} />
-            <Route path='/signin' element={<AuthPage />} />
+            <Route path='/login' element={<LogIn />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/leaderboard' element={<Leaderboard />} />
             <Route path='/user' element={<UserDetails />} />
           </Routes>

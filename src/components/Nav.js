@@ -17,12 +17,12 @@ const Nav = () => {
                     <Link to='/leaderboard'>
                         <li>Leaderboard</li>
                     </Link>
-                    <Link to='/signin'>
+                    <Link to='/login'>
                     {
                         authUser ? (
                                 <li><UserHeader /></li>
                         ) : (
-                                <li>Sign In</li>
+                                <li>Log In</li>
                         )
                     }
                     </Link>
