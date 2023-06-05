@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
 import styles from '../styles/GameEndModal.module.css';
 import { useAuth } from '../utils/AuthContext';
-import { Link } from 'react-router-dom';
+import { collection, addDoc } from "firebase/firestore"; 
+import { firestore } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { Slide, toast } from 'react-toastify';
 
 const GameEndModal = ({ onClose, minutes, seconds }) => {
     const [nickname, setNickname] = useState('');
@@ -10,12 +13,30 @@ const GameEndModal = ({ onClose, minutes, seconds }) => {
 
     const { authUser } = useAuth();
 
-    const submitToLeaderboard = (e, nickname) => {
+    const navigate = useNavigate();
+
+    const submitToLeaderboard = async (e, nickname) => {
         e.preventDefault();
 
-        // TODO: add stats to leaderboard via Firebase
+        const addToFirestore = async () => {
+            await addDoc(collection(firestore, 'leaderboard'), {
+                nickname: authUser ? authUser.displayName : nickname,
+                seconds: finalSeconds.current,
+                date: new Date()
+            })
 
-        console.log(`${nickname} found all targets`);
+            navigate('/leaderboard');
+        };
+
+        toast.promise(addToFirestore, {
+            pending: 'Adding to leaderboard...',
+            success: 'Leaderboard updated!',
+            error: 'Failed to add to leaderboard...',
+        }, {
+            hideProgressBar: true,
+            transition: Slide,
+            draggablePercent: 60
+        })
     };
 
     return (
@@ -28,13 +49,11 @@ const GameEndModal = ({ onClose, minutes, seconds }) => {
                     <p>Submit as <strong>{ authUser.displayName }</strong></p>
                 ) : (<form onSubmit={e => submitToLeaderboard(e, nickname)}>
                     <label>
-                        You are not signed in! Choose a nickname:
+                        You are not signed in - Choose a nickname:
                         <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='nickname' minLength={5} />
                     </label>
                 </form>)}
-                <Link to='/leaderboard'>
-                    <button onSubmit={e => submitToLeaderboard(e, nickname)} className={styles.ok}>OK</button>
-                </Link>
+                <button onClick={e => submitToLeaderboard(e, nickname)} className={styles.ok}>OK</button>
             </div>
         </>
     )
