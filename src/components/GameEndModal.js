@@ -19,12 +19,16 @@ const GameEndModal = ({ onClose, minutes, seconds }) => {
         e.preventDefault();
 
         const addToFirestore = async () => {
-            await addDoc(collection(firestore, 'leaderboard'), {
-                nickname: authUser ? authUser.displayName : nickname,
-                seconds: finalSeconds.current,
-                date: new Date(),
-                avatar: authUser.photoURL
-            })
+            try {
+                await addDoc(collection(firestore, 'leaderboard'), {
+                    nickname: authUser ? authUser.displayName : nickname,
+                    seconds: finalSeconds.current,
+                    date: new Date(),
+                    avatar: authUser ? authUser.photoURL : ''
+                });
+            } catch (e) {
+                console.error(e);
+            }
 
             navigate('/leaderboard');
         };
