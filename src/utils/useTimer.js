@@ -4,16 +4,16 @@ const MINUTE = 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
-const useTimer = () => {
+const useTimer = (startTimer) => {
     const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setSeconds(prevSec => prevSec + 1);
+            startTimer ? setSeconds(prevSec => prevSec + 1) : setSeconds(0);
         }, 1000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [startTimer]);
 
     return {
         days: Math.floor(seconds / DAY),

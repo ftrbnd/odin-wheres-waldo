@@ -8,6 +8,7 @@ import TargetsModal from './modals/TargetsModal';
 import { TargetsProvider } from '../utils/TargetsContext';
 import useTimer from '../utils/useTimer';
 import GameEndModal from './modals/GameEndModal';
+import PreGameModal from './modals/PreGameModal';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -17,11 +18,12 @@ const Game = () => {
     const [markers, setMarkers] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [gameEnd, setGameEnd] = useState(false);
+    const [startTimer, setStartTimer] = useState(false);
     
     const coords = useRef([]);
     const imgRef = useRef();
 
-    const { minutes, seconds } = useTimer();
+    const { minutes, seconds } = useTimer(startTimer);
 
     const updateCoords = (e) => {
         setClicked(true);
@@ -83,6 +85,7 @@ const Game = () => {
                     <p>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</p>
                     <p onClick={() => setShowModal(true)} className={styles.openModal}>Targets</p>
                 </div>
+                {!startTimer && <PreGameModal onClose={() => setStartTimer(true)} />}
                 {showModal && <TargetsModal onClose={() => setShowModal(false)} />}
                 {gameEnd && <GameEndModal onClose={() => setGameEnd(false)} minutes={minutes} seconds={seconds} />}
                 <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />

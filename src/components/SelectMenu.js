@@ -38,7 +38,7 @@ const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeigh
             zIndex: 1000
         }}>
             <ul className={styles.targets}> {
-                targets.current.map(target => 
+                targets.map(target => 
                     <li className={styles.target} key={target[0]} onClick={() => checkSelection(target)}>{ target[0] }</li>
                 )
             } </ul>

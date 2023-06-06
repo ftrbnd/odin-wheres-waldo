@@ -1,25 +1,26 @@
 import { collection, getDocs } from "firebase/firestore";
-import React, { createContext, useContext, useEffect, useRef } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { firestore } from '../utils/firebase';
 
 export const TargetsContext = createContext();
 export const useTargets = () => useContext(TargetsContext);
 
 export const TargetsProvider = ({ children }) => {
-    const targets = useRef([]);
+    const [targets, setTargets] = useState([]);
 
     useEffect(() => {
-        const data = [];
-
         async function fetchTargets() {
+            const data = [];
+
             const querySnapshot = await getDocs(collection(firestore, 'targets'));
             querySnapshot.forEach(doc => {
                 data.push([doc.id, doc.data()]);
             });
+
+            return data;
         };
         
-        fetchTargets();
-        targets.current = data;
+        fetchTargets().then(data => setTargets(data));
     }, []);
 
     return (
