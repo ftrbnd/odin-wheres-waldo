@@ -87,7 +87,7 @@ const Game = () => {
                 </div>
                 {!startTimer && <PreGameModal onClose={() => setStartTimer(true)} />}
                 {showModal && <TargetsModal onClose={() => setShowModal(false)} />}
-                {gameEnd && <GameEndModal onClose={() => setGameEnd(false)} minutes={minutes} seconds={seconds} />}
+                {gameEnd && <GameEndModal minutes={minutes} seconds={seconds} />}
                 <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
             </TargetsProvider>
         </div>

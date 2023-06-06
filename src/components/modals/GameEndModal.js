@@ -6,7 +6,7 @@ import { firestore } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { Slide, toast } from 'react-toastify';
 
-const GameEndModal = ({ onClose, minutes, seconds }) => {
+const GameEndModal = ({ minutes, seconds }) => {
     const [nickname, setNickname] = useState('');
     const finalMinutes = useRef(minutes);
     const finalSeconds = useRef(seconds);
