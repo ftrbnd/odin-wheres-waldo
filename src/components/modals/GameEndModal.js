@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import styles from '../styles/GameEndModal.module.css';
-import { useAuth } from '../utils/AuthContext';
+import styles from '../../styles/GameEndModal.module.css';
+import { useAuth } from '../../utils/AuthContext';
 import { collection, addDoc } from "firebase/firestore"; 
-import { firestore } from '../utils/firebase';
+import { firestore } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { Slide, toast } from 'react-toastify';
 

@@ -4,10 +4,10 @@ import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import TargetsModal from './TargetsModal';
+import TargetsModal from './modals/TargetsModal';
 import { TargetsProvider } from '../utils/TargetsContext';
 import useTimer from '../utils/useTimer';
-import GameEndModal from './GameEndModal';
+import GameEndModal from './modals/GameEndModal';
 
 const Game = () => {
     const [x, setX] = useState(-1);

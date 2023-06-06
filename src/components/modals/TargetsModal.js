@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../styles/TargetsModal.module.css';
-import { useTargets } from '../utils/TargetsContext';
+import styles from '../../styles/TargetsModal.module.css';
+import { useTargets } from '../../utils/TargetsContext';
 
 const TargetsModal = ({ onClose }) => {
     const { targets } = useTargets();
