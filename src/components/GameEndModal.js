@@ -22,7 +22,8 @@ const GameEndModal = ({ onClose, minutes, seconds }) => {
             await addDoc(collection(firestore, 'leaderboard'), {
                 nickname: authUser ? authUser.displayName : nickname,
                 seconds: finalSeconds.current,
-                date: new Date()
+                date: new Date(),
+                avatar: authUser.photoURL
             })
 
             navigate('/leaderboard');
