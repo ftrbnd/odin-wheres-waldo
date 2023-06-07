@@ -12,6 +12,17 @@ nav {
     padding: 1rem;
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo img {
+    height: 5rem;
+}
+
 .Nav h1 {
     margin: 0;
 }

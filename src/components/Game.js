@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Game.module.css';
 import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
@@ -9,6 +9,8 @@ import { TargetsProvider } from '../utils/TargetsContext';
 import useTimer from '../utils/useTimer';
 import GameEndModal from './modals/GameEndModal';
 import PreGameModal from './modals/PreGameModal';
+import Footer from './Footer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Game = () => {
     const [x, setX] = useState(-1);
@@ -24,6 +26,14 @@ const Game = () => {
     const imgRef = useRef();
 
     const { minutes, seconds } = useTimer(startTimer);
+
+    const { state } = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!state) navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const updateCoords = (e) => {
         setClicked(true);
@@ -88,7 +98,8 @@ const Game = () => {
                 {!startTimer && <PreGameModal onClose={() => setStartTimer(true)} />}
                 {showModal && <TargetsModal onClose={() => setShowModal(false)} />}
                 {gameEnd && <GameEndModal minutes={minutes} seconds={seconds} />}
-                <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src="https://i.imgur.com/EYt8S8f.png" alt="keebtown poster" />
+                {state && <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src={state.image.link} alt={state.image.name} />}
+                <Footer />
             </TargetsProvider>
         </div>
     );

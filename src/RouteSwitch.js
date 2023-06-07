@@ -9,6 +9,7 @@ import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Game from "./components/Game";
 
 const RouteSwitch = () => {
     return (
@@ -17,6 +18,7 @@ const RouteSwitch = () => {
           <Nav />
           <Routes>
             <Route path='/' element={<App />} />
+            <Route path='/game' element={<Game />} />
             <Route path='/login' element={<LogIn />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/leaderboard' element={<Leaderboard />} />

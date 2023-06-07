@@ -1,0 +1,35 @@
+.App {
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 1rem;
+
+    text-align: center;
+}
+
+.App h2 {
+    grid-column: 1 / -1;
+}
+
+.card {
+    padding: 1rem;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card img {
+    height: 25vh;
+    border: 5px solid black;
+}
+
+.card img:hover {
+    border: 5px solid yellow;
+}
+
+.card:hover {
+    font-weight: bold;
+}

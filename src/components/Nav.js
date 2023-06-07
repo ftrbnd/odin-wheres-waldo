@@ -11,7 +11,10 @@ const Nav = () => {
         <div className={styles.Nav}>
             <nav>
                 <Link to='/'>
-                    <h1>Where's Waldo?</h1>
+                    <div className={styles.logo}>
+                        <img src='https://i.imgur.com/W9TpN21.png' alt='logo' />
+                        <h1>Where's Spidey?</h1>
+                    </div>
                 </Link>
                 <ul className={styles.links}>
                     <Link to='/leaderboard'>
