@@ -8,7 +8,10 @@ const TargetsModal = ({ onClose, targets, displayName }) => {
             <div className={styles.TargetsModal}>
                 <ul className={styles.targets}> {
                     targets.map(target => 
-                        <li className={styles.target} key={target[0]}>{ displayName(target[0]) }</li>
+                        <li className={styles.target} key={target[0]}>
+                            <img src={target[1].image} alt={target[0]} />
+                            <p>{ displayName(target[0]) }</p>
+                        </li>
                 )} </ul>
                 <button onClick={onClose} className={styles.ok}>OK</button>
             </div>

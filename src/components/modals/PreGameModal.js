@@ -10,7 +10,10 @@ const PreGameModal = ({ onClose, targets, displayName }) => {
                 <p>Locate these 3 targets to complete the game:</p>
                 <ul className={styles.targets}> {
                     targets.map(target => 
-                        <li className={styles.target} key={target[0]}>{ displayName(target[0]) }</li>
+                        <li className={styles.target} key={target[0]}>
+                            <img src={target[1].image} alt={target[0]} />
+                            <p>{ displayName(target[0]) }</p>
+                        </li>
                 )} </ul>
                 <button onClick={onClose}>Start!</button>
             </div>

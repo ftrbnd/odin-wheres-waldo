@@ -55,3 +55,17 @@ button.ok {
     color: #fffab2;
     background-color: black;
 }
+
+.target {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+}
+
+.target img {
+    height: 100px;
+}
+
+.target p {
+    margin: 0;
+}
