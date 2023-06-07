@@ -9,7 +9,7 @@ const PreGameModal = ({ onClose }) => {
         <>
             <div className={styles.overlay} />
             <div className={styles.PreGameModal}>
-                <h4>Welcome to Where's Waldo!</h4>
+                <h2>Welcome to Where's Waldo!</h2>
                 <p>Locate these 3 targets to complete the game:</p>
                 <ul className={styles.targets}> {
                     targets.map(target => 
