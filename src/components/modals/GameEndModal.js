@@ -41,7 +41,8 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
         }, {
             hideProgressBar: true,
             transition: Slide,
-            draggablePercent: 60
+            draggablePercent: 60,
+            autoClose: 2000
         })
     };
 

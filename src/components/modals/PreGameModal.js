@@ -6,7 +6,7 @@ const PreGameModal = ({ onClose, targets, displayName }) => {
         <>
             <div className={styles.overlay} />
             <div className={styles.PreGameModal}>
-                <h2>Welcome to Where's Waldo!</h2>
+                <h2>Welcome to Where's Spidey!</h2>
                 <p>Locate these 3 targets to complete the game:</p>
                 <ul className={styles.targets}> {
                     targets.map(target => 

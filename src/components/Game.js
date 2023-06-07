@@ -96,6 +96,7 @@ const Game = () => {
             hideProgressBar: true,
             transition: Slide,
             draggablePercent: 60,
+            autoClose: 2000,
             style: {
                 backgroundColor: `${correctGuess ? 'lightgreen' : 'lightcoral'}`,
                 color: `${correctGuess ? 'gray' : 'white'}`,
