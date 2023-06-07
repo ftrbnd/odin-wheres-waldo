@@ -6,7 +6,7 @@ import { firestore } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { Slide, toast } from 'react-toastify';
 
-const GameEndModal = ({ minutes, seconds }) => {
+const GameEndModal = ({ minutes, seconds, imageName }) => {
     const [nickname, setNickname] = useState('');
     const finalMinutes = useRef(minutes);
     const finalSeconds = useRef(seconds);
@@ -24,7 +24,8 @@ const GameEndModal = ({ minutes, seconds }) => {
                     nickname: authUser ? authUser.displayName : nickname,
                     seconds: finalSeconds.current,
                     date: new Date(),
-                    avatar: authUser ? authUser.photoURL : ''
+                    avatar: authUser ? authUser.photoURL : '',
+                    image: imageName
                 });
             } catch (e) {
                 console.error(e);

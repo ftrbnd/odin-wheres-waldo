@@ -131,7 +131,7 @@ const Game = () => {
             </div>
             {!startTimer && <PreGameModal onClose={() => setStartTimer(true)} targets={targets} displayName={displayTargetName} />}
             {showModal && <TargetsModal onClose={() => setShowModal(false)} targets={targets} displayName={displayTargetName} />}
-            {gameEnd && <GameEndModal minutes={minutes} seconds={seconds} />}
+            {gameEnd && <GameEndModal minutes={minutes} seconds={seconds} imageName={state.image.name} />}
             {state && <img ref={imgRef} onClick={updateCoords} className={styles.mainImage} src={state.image.link} alt={state.image.name} />}
             <Footer />
         </div>
