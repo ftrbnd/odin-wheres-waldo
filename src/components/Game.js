@@ -98,7 +98,10 @@ const Game = () => {
             draggablePercent: 60,
             style: {
                 backgroundColor: `${correctGuess ? 'lightgreen' : 'lightcoral'}`,
-                color: `${correctGuess ? 'gray' : 'white'}`
+                color: `${correctGuess ? 'gray' : 'white'}`,
+                border: '5px solid white',
+                borderRadius: 0,
+                boxShadow: `3px 3px 1px ${correctGuess ? 'lightgreen' : 'lightcoral'}`
             }
         });
     };

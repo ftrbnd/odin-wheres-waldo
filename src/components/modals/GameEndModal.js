@@ -51,9 +51,10 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
             <div className={styles.GameEndModal}>
                 <h2>Success!</h2>
                 <p>You found all 3 targets in {String(finalMinutes.current).padStart(2, '0')}:{String(finalSeconds.current).padStart(2, '0')}</p>
-                {authUser ? (
+                {authUser ? (<>
                     <p>Submit as <strong>{ authUser.displayName }</strong></p>
-                ) : (<form onSubmit={e => submitToLeaderboard(e, nickname)}>
+                    <button onClick={e => submitToLeaderboard(e, nickname)} className={styles.ok}>OK</button>
+                </>) : (<form onSubmit={e => submitToLeaderboard(e, nickname)}>
                     <label>You are not signed in! Choose a nickname:</label>
                     <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='Nickname' minLength={2} required />
                     <button type='submit' className={styles.ok}>OK</button>
