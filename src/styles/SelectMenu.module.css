@@ -2,9 +2,12 @@
     position: absolute;
     background-color: white;
     text-align: left;
-    /* padding: 1rem; */
-    border-radius: 15px;
-    box-shadow: 0 0 10px black;
+
+    background-color: #fffab2;
+    border: 5px solid black;
+    box-shadow: 10px 10px 2px black;
+    font-family: 'BadaBoom BB';
+    font-size: x-large;
 }
 
 .targets {
