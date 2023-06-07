@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
 import styles from '../styles/SelectMenu.module.css';
 import navStyles from '../styles/Nav.module.css';
-import { useTargets } from '../utils/TargetsContext';
 
-const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess, onDuplicateGuess }) => {
-    const { targets } = useTargets();
+const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess, onDuplicateGuess, targets, displayName }) => {
     const correctGuesses = useRef([]);
 
     const checkSelection = (target) => {
@@ -39,7 +37,7 @@ const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeigh
         }}>
             <ul className={styles.targets}> {
                 targets.map(target => 
-                    <li className={styles.target} key={target[0]} onClick={() => checkSelection(target)}>{ target[0] }</li>
+                    <li className={styles.target} key={target[0]} onClick={() => checkSelection(target)}>{ displayName(target[0]) }</li>
                 )
             } </ul>
         </div>

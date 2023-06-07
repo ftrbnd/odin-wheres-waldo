@@ -1,10 +1,7 @@
 import React from 'react';
 import styles from '../../styles/PreGameModal.module.css';
-import { useTargets } from '../../utils/TargetsContext';
 
-const PreGameModal = ({ onClose }) => {
-    const { targets } = useTargets();
-
+const PreGameModal = ({ onClose, targets, displayName }) => {
     return (
         <>
             <div className={styles.overlay} />
@@ -13,7 +10,7 @@ const PreGameModal = ({ onClose }) => {
                 <p>Locate these 3 targets to complete the game:</p>
                 <ul className={styles.targets}> {
                     targets.map(target => 
-                        <li className={styles.target} key={target[0]}>{ target[0] }</li>
+                        <li className={styles.target} key={target[0]}>{ displayName(target[0]) }</li>
                 )} </ul>
                 <button onClick={onClose}>Start!</button>
             </div>
