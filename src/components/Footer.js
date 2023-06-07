@@ -4,10 +4,11 @@ import styles from '../styles/Footer.module.css';
 const Footer = () => {
     return (
         <div className={styles.Footer}>
-            Keebtown poster by
-            <a href='https://mykeyboard.eu/catalogue/keeb-town-poster_5222/' target='_blank' rel="noreferrer">
-                {' '}mykeyboard.eu
+            Photos from the
+            <a href='https://a.co/d/gbFEW2Y' target='_blank' rel="noreferrer">
+                {' '}Where's Spidey?{' '}
             </a>
+            book
         </div>
     );
 };

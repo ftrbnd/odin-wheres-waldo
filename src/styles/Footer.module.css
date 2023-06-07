@@ -1,8 +1,14 @@
 .Footer {
-    background-color: navy;
+    background-color: black;
     color: white;
     padding: 1rem;
     text-align: center;
+}
+
+.Footer a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 .Footer a:hover {

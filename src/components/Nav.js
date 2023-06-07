@@ -13,7 +13,7 @@ const Nav = () => {
                 <Link to='/'>
                     <div className={styles.logo}>
                         <img src='https://i.imgur.com/W9TpN21.png' alt='logo' />
-                        <h1>Where's Spidey?</h1>
+                        <h1>W h e r e ' s S p i d e y ?</h1>
                     </div>
                 </Link>
                 <ul className={styles.links}>

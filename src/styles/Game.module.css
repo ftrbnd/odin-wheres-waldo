@@ -1,3 +1,8 @@
+.Game {
+    display: flex;
+    flex-direction: column;
+}
+
 .mainImage {
     width: 100%;
 }

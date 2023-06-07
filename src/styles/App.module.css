@@ -14,20 +14,24 @@
 
 .card {
     padding: 1rem;
+    font-family: 'BadaBoom BB';
 }
 
 .card a {
     text-decoration: none;
     color: inherit;
+    font-size: larger;
 }
 
 .card img {
     height: 25vh;
     border: 5px solid black;
+    box-shadow: 10px 10px 2px black;
 }
 
 .card img:hover {
-    border: 5px solid yellow;
+    border: 5px solid black;
+    box-shadow: 10px 10px 2px gray;
 }
 
 .card:hover {
