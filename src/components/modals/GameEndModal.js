@@ -53,12 +53,10 @@ const GameEndModal = ({ minutes, seconds }) => {
                 {authUser ? (
                     <p>Submit as <strong>{ authUser.displayName }</strong></p>
                 ) : (<form onSubmit={e => submitToLeaderboard(e, nickname)}>
-                    <label>
-                        You are not signed in - Choose a nickname:
-                        <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='nickname' minLength={5} />
-                    </label>
+                    <label>You are not signed in! Choose a nickname:</label>
+                    <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='Nickname' minLength={5} required />
+                    <button type='submit' className={styles.ok}>OK</button>
                 </form>)}
-                <button onClick={e => submitToLeaderboard(e, nickname)} className={styles.ok}>OK</button>
             </div>
         </>
     )

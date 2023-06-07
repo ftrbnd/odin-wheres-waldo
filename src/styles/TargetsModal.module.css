@@ -3,10 +3,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 25px 100px;
     z-index: 1000;
-    border-radius: 25px;
+
+    background-color: #fffab2;
+    border: 5px solid black;
+    box-shadow: 10px 10px 2px black;
 
     display: grid;
     grid-template-rows: repeat(2, auto);
@@ -21,7 +23,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .5);
     z-index: 1000;
 }
 
@@ -36,4 +38,20 @@
 
 button.ok {
     padding: 4px 16px;
+}
+
+.TargetsModal button {
+    color: black;
+    background-color: #fffab2;
+    border: 5px solid black;
+    box-shadow: 3px 3px 2px black;
+    font-family: 'BadaBoom BB';
+    font-size: larger;
+    padding: 0 10px;
+}
+
+.TargetsModal button:hover {
+    cursor: pointer;
+    color: #fffab2;
+    background-color: black;
 }
