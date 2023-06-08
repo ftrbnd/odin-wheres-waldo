@@ -51,7 +51,6 @@ const Game = () => {
         
         fetchTargets().then(data => { 
             setTargets(data);
-            console.log(`Targets for ${state.image.name}: `, data);
         });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
