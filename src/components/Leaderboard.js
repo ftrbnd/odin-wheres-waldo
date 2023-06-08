@@ -1,5 +1,5 @@
 import { collection, getDocs } from 'firebase/firestore';
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { firestore } from '../utils/firebase';
 import styles from '../styles/Leaderboard.module.css';
 import LeaderboardTab from './LeaderboardTab';
@@ -8,7 +8,11 @@ const ACTIONS = {
     CENTRAL_PARK: 'Central Park',
     GREEN_GOBLIN: 'Green Goblin',
     MISTER_NEGATIVE: 'Mister Negative',
-    VULTURE: 'Vulture'
+    VULTURE: 'Vulture',
+    DISPLAY_CENTRAL_PARK: 'Display Central Park',
+    DISPLAY_GREEN_GOBLIN: 'Display Green Goblin',
+    DISPLAY_MISTER_NEGATIVE: 'Display Mister Negative',
+    DISPLAY_VULTURE: 'Display Vulture'
 };
 
 function reducer(leaderboard, action) {
@@ -16,49 +20,154 @@ function reducer(leaderboard, action) {
         case ACTIONS.CENTRAL_PARK:
             return {
                 ...leaderboard,
-                centralPark: [
-                    ...leaderboard.centralPark
-                        .filter(data => data.date.seconds !== action.payload.data.date.seconds),
-                    action.payload.data
-                ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                centralPark: {
+                    ...leaderboard.centralPark,
+                    data: [
+                        ...leaderboard.centralPark.data
+                            .filter(data => data.date.seconds !== action.payload.data.date.seconds),
+                        action.payload.data
+                    ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                }
             };
         case ACTIONS.GREEN_GOBLIN:
             return {
                 ...leaderboard,
-                greenGoblin: [
-                    ...leaderboard.greenGoblin
-                        .filter(data => data.date.seconds !== action.payload.data.date.seconds),
-                    action.payload.data
-                ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                greenGoblin: {
+                    ...leaderboard.greenGoblin,
+                    data: [
+                        ...leaderboard.greenGoblin.data
+                            .filter(data => data.date.seconds !== action.payload.data.date.seconds),
+                        action.payload.data
+                    ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                }
             };
         case ACTIONS.MISTER_NEGATIVE:
             return {
                 ...leaderboard,
-                misterNegative: [
-                    ...leaderboard.misterNegative
-                        .filter(data => data.date.seconds !== action.payload.data.date.seconds),
-                    action.payload.data
-                ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                misterNegative: {
+                    ...leaderboard.misterNegative,
+                    data: [
+                        ...leaderboard.misterNegative.data
+                            .filter(data => data.date.seconds !== action.payload.data.date.seconds),
+                        action.payload.data
+                    ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                }
             };
         case ACTIONS.VULTURE:
             return {
                 ...leaderboard,
-                vulture: [
-                    ...leaderboard.vulture
-                        .filter(data => data.date.seconds !== action.payload.data.date.seconds),
-                    action.payload.data
-                ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                vulture: {
+                    ...leaderboard.vulture,
+                    data: [
+                        ...leaderboard.vulture.data
+                            .filter(data => data.date.seconds !== action.payload.data.date.seconds),
+                        action.payload.data
+                    ].sort((a, b) => (a.seconds > b.seconds) ? 1 : -1)
+                }
+            };
+        case ACTIONS.DISPLAY_CENTRAL_PARK:
+            return {
+                ...leaderboard,
+                centralPark: {
+                    ...leaderboard.centralPark,
+                    display: true
+                },
+                greenGoblin: {
+                    ...leaderboard.greenGoblin,
+                    display: false
+                },
+                misterNegative: {
+                    ...leaderboard.misterNegative,
+                    display: false
+                },
+                vulture: {
+                    ...leaderboard.vulture,
+                    display: false
+                }
+            };
+        case ACTIONS.DISPLAY_GREEN_GOBLIN:
+            return {
+                ...leaderboard,
+                centralPark: {
+                    ...leaderboard.centralPark,
+                    display: false
+                },
+                greenGoblin: {
+                    ...leaderboard.greenGoblin,
+                    display: true
+                },
+                misterNegative: {
+                    ...leaderboard.misterNegative,
+                    display: false
+                },
+                vulture: {
+                    ...leaderboard.vulture,
+                    display: false
+                }
+            };
+        case ACTIONS.DISPLAY_MISTER_NEGATIVE:
+            return {
+                ...leaderboard,
+                centralPark: {
+                    ...leaderboard.centralPark,
+                    display: false
+                },
+                greenGoblin: {
+                    ...leaderboard.greenGoblin,
+                    display: false
+                },
+                misterNegative: {
+                    ...leaderboard.misterNegative,
+                    display: true
+                },
+                vulture: {
+                    ...leaderboard.vulture,
+                    display: false
+                }
+            };
+        case ACTIONS.DISPLAY_VULTURE:
+            return {
+                ...leaderboard,
+                centralPark: {
+                    ...leaderboard.centralPark,
+                    display: false
+                },
+                greenGoblin: {
+                    ...leaderboard.greenGoblin,
+                    display: false
+                },
+                misterNegative: {
+                    ...leaderboard.misterNegative,
+                    display: false
+                },
+                vulture: {
+                    ...leaderboard.vulture,
+                    display: true
+                }
             };
         default:
+            return leaderboard;
     }
 }
 
 const Leaderboard = () => {
     const [leaderboard, dispatch] = useReducer(reducer, {
-        centralPark: [],
-        greenGoblin: [],
-        misterNegative: [],
-        vulture: []
+        centralPark: {
+            data: [],
+            display: true
+        },
+        greenGoblin: {
+            data: [],
+            display: false
+        },
+        misterNegative: {
+            data: [],
+            display: false
+        },
+        vulture: {
+            data: [],
+            display: false
+        }
     });
 
     useEffect(() => {
@@ -76,15 +185,15 @@ const Leaderboard = () => {
         <div className={styles.Leaderboard}>
             <h2>Leaderboard</h2>
             <ul className={styles.tabs}>
-                <li>Central Park</li>
-                <li>Green Goblin</li>
-                <li>Mister Negative</li>
-                <li>Vulture</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_CENTRAL_PARK })}>Central Park</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_GREEN_GOBLIN })}>Green Goblin</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_MISTER_NEGATIVE })}>Mister Negative</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_VULTURE })}>Vulture</li>
             </ul>
-            <LeaderboardTab data={leaderboard.centralPark} />
-            <LeaderboardTab data={leaderboard.greenGoblin} />
-            <LeaderboardTab data={leaderboard.misterNegative} />
-            <LeaderboardTab data={leaderboard.vulture} />
+            {leaderboard.centralPark.display && <LeaderboardTab data={leaderboard.centralPark.data} />}
+            {leaderboard.greenGoblin.display && <LeaderboardTab data={leaderboard.greenGoblin.data} />}
+            {leaderboard.misterNegative.display && <LeaderboardTab data={leaderboard.misterNegative.data} />}
+            {leaderboard.vulture.display && <LeaderboardTab data={leaderboard.vulture.data} />}
         </div>
     );
 };
