@@ -16,7 +16,6 @@ const LeaderboardTab = ({ data }) => {
             <div className={styles.columnNames}>
                 <h3>Nickname</h3>
                 <h3>Time</h3>
-                <h3>Image</h3>
                 <h3>Date</h3>
             </div>
             <ol className={styles.data}>
@@ -27,7 +26,6 @@ const LeaderboardTab = ({ data }) => {
                             <p>{entry.nickname}</p>
                         </div>
                         <p>{formattedTime(entry.seconds)}</p>
-                        <p>{ entry.image }</p>
                         <p>{new Date(entry.date.toDate()).toLocaleString()}</p>
                     </li>
                 )}
