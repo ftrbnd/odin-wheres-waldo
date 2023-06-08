@@ -20,6 +20,7 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 8px;
+    font-size: 2rem;
 }
 
 .logo img {
@@ -32,13 +33,14 @@ nav {
 }
 
 .links {
-    width: 40%;
+    /* width: 40%; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 1rem;
 }
 
 .links li:hover {
