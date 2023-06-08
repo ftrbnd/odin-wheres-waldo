@@ -150,15 +150,6 @@ function reducer(leaderboard, action) {
     }
 }
 
-const activeTabStyle = (active) => {
-    return {
-        backgroundColor: active ? 'rgb(0, 0, 0, .75)' : '#fffab2',
-        color: active ? '#fffab2' : 'rgb(0, 0, 0, .75)',
-        fontWeight: active ? 'bold' : 'normal',
-        borderRadius: active ? '15px' : '0'
-    }
-}
-
 const Leaderboard = () => {
     const [leaderboard, dispatch] = useReducer(reducer, {
         centralPark: {
@@ -194,10 +185,18 @@ const Leaderboard = () => {
         <div className={styles.Leaderboard}>
             <h2>Leaderboard</h2>
             <ul className={styles.tabs}>
-                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_CENTRAL_PARK })} style={activeTabStyle(leaderboard.centralPark.display)}>Central Park</li>
-                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_GREEN_GOBLIN })} style={activeTabStyle(leaderboard.greenGoblin.display)}>Green Goblin</li>
-                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_MISTER_NEGATIVE })} style={activeTabStyle(leaderboard.misterNegative.display)}>Mister Negative</li>
-                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_VULTURE })} style={activeTabStyle(leaderboard.vulture.display)}>Vulture</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_CENTRAL_PARK })}
+                    className={`${leaderboard.centralPark.display && styles.activeTab}`}
+                >Central Park</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_GREEN_GOBLIN })}
+                    className={`${leaderboard.greenGoblin.display && styles.activeTab}`}
+                >Green Goblin</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_MISTER_NEGATIVE })}
+                    className={`${leaderboard.misterNegative.display && styles.activeTab}`}
+                >Mister Negative</li>
+                <li onClick={() => dispatch({ type: ACTIONS.DISPLAY_VULTURE })}
+                    className={`${leaderboard.vulture.display && styles.activeTab}`}
+                >Vulture</li>
             </ul>
             {leaderboard.centralPark.display && <LeaderboardTab data={leaderboard.centralPark.data} />}
             {leaderboard.greenGoblin.display && <LeaderboardTab data={leaderboard.greenGoblin.data} />}
