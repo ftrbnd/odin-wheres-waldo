@@ -15,6 +15,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+
+    position: sticky;
+    top: 100px;
+    background-color: #fffab2;
 }
 
 p.openModal:hover {
