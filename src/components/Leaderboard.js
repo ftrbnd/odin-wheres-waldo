@@ -3,6 +3,7 @@ import React, { useEffect, useReducer } from 'react';
 import { firestore } from '../utils/firebase';
 import styles from '../styles/Leaderboard.module.css';
 import LeaderboardTab from './LeaderboardTab';
+import { useLocation } from 'react-router-dom';
 
 const ACTIONS = {
     CENTRAL_PARK: 'Central Park',
@@ -151,22 +152,24 @@ function reducer(state, action) {
 }
 
 const Leaderboard = () => {
+    const location = useLocation();
+
     const [state, dispatch] = useReducer(reducer, {
         centralPark: {
             data: [],
-            display: true
+            display: location.state === ACTIONS.CENTRAL_PARK
         },
         greenGoblin: {
             data: [],
-            display: false
+            display: location.state === ACTIONS.GREEN_GOBLIN
         },
         misterNegative: {
             data: [],
-            display: false
+            display: location.state === ACTIONS.MISTER_NEGATIVE
         },
         vulture: {
             data: [],
-            display: false
+            display: location.state === ACTIONS.VULTURE
         }
     });
 

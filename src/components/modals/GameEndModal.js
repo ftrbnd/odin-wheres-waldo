@@ -22,6 +22,7 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
             try {
                 await addDoc(collection(firestore, 'leaderboard'), {
                     nickname: authUser ? authUser.displayName : nickname,
+                    minutes: finalMinutes.current,
                     seconds: finalSeconds.current,
                     date: new Date(),
                     avatar: authUser ? authUser.photoURL : '',
@@ -31,7 +32,9 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
                 console.error(e);
             }
 
-            navigate('/leaderboard');
+            navigate('/leaderboard', {
+                state: imageName
+            });
         };
 
         toast.promise(addToFirestore, {
