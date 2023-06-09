@@ -21,7 +21,7 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
         const addToFirestore = async () => {
             try {
                 await addDoc(collection(firestore, 'leaderboard'), {
-                    nickname: authUser ? authUser.displayName : nickname,
+                    nickname: authUser ? authUser.displayName : nickname || 'Anonymous',
                     minutes: finalMinutes.current,
                     seconds: finalSeconds.current,
                     date: new Date(),
@@ -60,7 +60,7 @@ const GameEndModal = ({ minutes, seconds, imageName }) => {
                     <button onClick={e => submitToLeaderboard(e, nickname)} className={styles.ok}>OK</button>
                 </>) : (<form onSubmit={e => submitToLeaderboard(e, nickname)}>
                     <label>You are not signed in! Choose a nickname:</label>
-                    <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='Nickname' minLength={2} required />
+                    <input value={nickname} onChange={e => setNickname(e.target.value)} type='text' placeholder='Anonymous' />
                     <button type='submit' className={styles.ok}>OK</button>
                 </form>)}
             </div>
