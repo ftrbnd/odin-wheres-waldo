@@ -182,7 +182,9 @@ const Leaderboard = () => {
         }
 
         fetchLeaderboard();
-    }, []);
+
+        if (!location.state) dispatch({ type: ACTIONS.DISPLAY_CENTRAL_PARK });
+    }, [location]);
 
     return (
         <div className={styles.Leaderboard}>
