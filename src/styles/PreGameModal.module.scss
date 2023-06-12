@@ -1,15 +1,7 @@
+@use 'utils';
 
 .PreGameModal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 25px 100px;
-    z-index: 1000;
-
-    background-color: #fffab2;
-    border: 5px solid black;
-    box-shadow: 10px 10px 2px black;
+    @include utils.modalLayout($usesGrid: false);
 
     h2 {
         margin: 0;
@@ -17,51 +9,18 @@
     }
 
     button {
-        color: black;
-        background-color: #fffab2;
-        border: 5px solid black;
-        box-shadow: 3px 3px 2px black;
-        font-family: 'BadaBoom BB';
-        font-size: larger;
-        padding: 0 10px;
-
-        &:hover {
-            cursor: pointer;
-            color: #fffab2;
-            background-color: black;
-        }
+        @include utils.comicButton;
     }
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(100, 100, 100, .5);
-    z-index: 1000;
+    @include utils.modalOverlay;
 }
 
 .targets {
-    list-style: none;
-    padding: 0;
-
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    @include utils.targetsListDisplay;
 }
 
 .target {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    align-items: center;
-
-    img {
-        height: 100px;
-    }
-
-    p {
-        margin: 0;
-    }
+    @include utils.targetDisplay;
 }

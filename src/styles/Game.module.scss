@@ -1,3 +1,5 @@
+@use 'utils';
+
 .Game {
     display: flex;
     flex-direction: column;
@@ -18,7 +20,7 @@
 
     position: sticky;
     top: 100px;
-    background-color: #fffab2;
+    background-color: utils.$comic-yellow;
 }
 
 p.openModal:hover {

@@ -1,3 +1,5 @@
+@use 'utils';
+
 .Leaderboard {
     display: flex;
     flex-direction: column;
@@ -23,7 +25,7 @@
             cursor: pointer;
             font-weight: bold;
             background-color: rgb(0, 0, 0, .75);
-            color: #fffab2;
+            color: utils.$comic-yellow;
             border-radius: 15px;
         }
     }
@@ -31,7 +33,7 @@
 
 .activeTab {
     background-color: rgb(0, 0, 0, .75);
-    color: #fffab2;
+    color: utils.$comic-yellow;
     font-weight: bold;
     border-radius: 15px;
 }

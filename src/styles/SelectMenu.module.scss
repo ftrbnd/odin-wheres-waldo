@@ -1,11 +1,13 @@
+@use 'utils';
+
 .SelectMenu {
     position: absolute;
     background-color: white;
     text-align: left;
 
-    background-color: #fffab2;
-    border: 5px solid black;
-    box-shadow: 10px 10px 2px black;
+    background-color: utils.$comic-yellow;
+    border: 5px solid utils.$comic-black;
+    box-shadow: 10px 10px 2px utils.$comic-black;
     font-family: 'BadaBoom BB';
     font-size: x-large;
 }
