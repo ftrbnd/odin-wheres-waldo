@@ -1,6 +1,6 @@
 import React from 'react';
 import UserHeader from './UserHeader';
-import styles from '../styles/Nav.module.css';
+import styles from '../styles/Nav.module.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 

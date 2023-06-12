@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from '../styles/Game.module.css';
+import styles from '../styles/Game.module.scss';
 import SelectMenu from './SelectMenu';
 import { Slide, toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

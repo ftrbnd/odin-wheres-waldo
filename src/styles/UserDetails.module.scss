@@ -14,11 +14,11 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-}
 
-.page form {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 8px;
-    justify-items: center;
+    form {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 8px;
+        justify-items: center;
+    }
 }

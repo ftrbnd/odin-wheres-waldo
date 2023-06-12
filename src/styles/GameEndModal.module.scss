@@ -1,0 +1,60 @@
+.GameEndModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px 100px;
+    z-index: 1000;
+
+    background-color: #fffab2;
+    border: 5px solid black;
+    box-shadow: 10px 10px 2px black;
+
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+    justify-items: center;
+    align-items: center;
+
+    h2 {
+        margin: 0;
+        font-family: 'BadaBoom BB';
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    input {
+        padding: 8px;
+    }
+
+    button {
+        color: black;
+        background-color: #fffab2;
+        border: 5px solid black;
+        box-shadow: 3px 3px 2px black;
+        font-family: 'BadaBoom BB';
+        font-size: larger;
+        padding: 0 10px;
+
+        &:hover {
+            cursor: pointer;
+            color: #fffab2;
+            background-color: black;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(100, 100, 100, .5);
+    z-index: 1000;
+}

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import styles from '../../styles/GameEndModal.module.css';
+import styles from '../../styles/GameEndModal.module.scss';
 import { useAuth } from '../../utils/AuthContext';
 import { collection, addDoc } from "firebase/firestore"; 
 import { firestore } from '../../utils/firebase';

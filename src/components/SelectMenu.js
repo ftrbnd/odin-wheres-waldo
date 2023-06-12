@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import styles from '../styles/SelectMenu.module.css';
-import navStyles from '../styles/Nav.module.css';
+import styles from '../styles/SelectMenu.module.scss';
+import navStyles from '../styles/Nav.module.scss';
 
 const SelectMenu = ({ xPosition, yPosition, wasClicked, offsetWidth, offsetHeight, coords, onCorrectGuess, onWrongGuess, onDuplicateGuess, targets, displayName }) => {
     const correctGuesses = useRef([]);

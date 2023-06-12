@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../utils/AuthContext';
-import styles from '../../styles/LogIn.module.css';
+import styles from '../../styles/LogIn.module.scss';
 import { Link } from 'react-router-dom';
 
 const LogIn = () => {

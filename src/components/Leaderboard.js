@@ -1,7 +1,7 @@
 import { collection, getDocs } from 'firebase/firestore';
 import React, { useEffect, useReducer } from 'react';
 import { firestore } from '../utils/firebase';
-import styles from '../styles/Leaderboard.module.css';
+import styles from '../styles/Leaderboard.module.scss';
 import LeaderboardTab from './LeaderboardTab';
 import { useLocation } from 'react-router-dom';
 import { ACTIONS, leaderboardReducer } from '../utils/leaderboardReducer';

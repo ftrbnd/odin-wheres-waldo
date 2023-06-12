@@ -5,10 +5,10 @@
 
 .mainImage {
     width: 100%;
-}
 
-.mainImage:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .info {

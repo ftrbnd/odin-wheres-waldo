@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/LeaderboardTab.module.css';
+import styles from '../styles/LeaderboardTab.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 

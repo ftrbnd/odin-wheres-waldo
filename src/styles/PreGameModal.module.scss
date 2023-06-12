@@ -1,3 +1,4 @@
+
 .PreGameModal {
     position: fixed;
     top: 50%;
@@ -9,6 +10,27 @@
     background-color: #fffab2;
     border: 5px solid black;
     box-shadow: 10px 10px 2px black;
+
+    h2 {
+        margin: 0;
+        font-family: 'BadaBoom BB';
+    }
+
+    button {
+        color: black;
+        background-color: #fffab2;
+        border: 5px solid black;
+        box-shadow: 3px 3px 2px black;
+        font-family: 'BadaBoom BB';
+        font-size: larger;
+        padding: 0 10px;
+
+        &:hover {
+            cursor: pointer;
+            color: #fffab2;
+            background-color: black;
+        }
+    }
 }
 
 .overlay {
@@ -21,11 +43,6 @@
     z-index: 1000;
 }
 
-.PreGameModal h2 {
-    margin: 0;
-    font-family: 'BadaBoom BB';
-}
-
 .targets {
     list-style: none;
     padding: 0;
@@ -35,32 +52,16 @@
     gap: 8px;
 }
 
-.PreGameModal button {
-    color: black;
-    background-color: #fffab2;
-    border: 5px solid black;
-    box-shadow: 3px 3px 2px black;
-    font-family: 'BadaBoom BB';
-    font-size: larger;
-    padding: 0 10px;
-}
-
-.PreGameModal button:hover {
-    cursor: pointer;
-    color: #fffab2;
-    background-color: black;
-}
-
 .target {
     display: grid;
     grid-template-columns: repeat(2, auto);
     align-items: center;
-}
 
-.target img {
-    height: 100px;
-}
+    img {
+        height: 100px;
+    }
 
-.target p {
-    margin: 0;
+    p {
+        margin: 0;
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/PreGameModal.module.css';
+import styles from '../../styles/PreGameModal.module.scss';
 
 const PreGameModal = ({ onClose, targets, displayName }) => {
     return (

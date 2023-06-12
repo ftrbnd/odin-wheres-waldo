@@ -1,4 +1,4 @@
-.LogIn {
+.SignUp {
     display: grid;
     grid-template-rows: repeat(3, auto);
     justify-items: center;
@@ -11,10 +11,9 @@
     display: grid;
     grid-template-rows: repeat(6, auto);
     gap: 8px;
-
     text-align: left;
-}
 
-.form input {
-    padding: 4px;
+    input {
+        padding: 4px;
+    }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/TargetsModal.module.css';
+import styles from '../../styles/TargetsModal.module.scss';
 
 const TargetsModal = ({ onClose, targets, displayName }) => {
     return (

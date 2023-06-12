@@ -15,6 +15,22 @@
     gap: 8px;
     justify-items: center;
     align-items: center;
+
+    button {
+        color: black;
+        background-color: #fffab2;
+        border: 5px solid black;
+        box-shadow: 3px 3px 2px black;
+        font-family: 'BadaBoom BB';
+        font-size: larger;
+        padding: 4px 16px;
+
+        &:hover {
+            cursor: pointer;
+            color: #fffab2;
+            background-color: black;
+        }
+    }
 }
 
 .overlay {
@@ -36,36 +52,16 @@
     gap: 8px;
 }
 
-button.ok {
-    padding: 4px 16px;
-}
-
-.TargetsModal button {
-    color: black;
-    background-color: #fffab2;
-    border: 5px solid black;
-    box-shadow: 3px 3px 2px black;
-    font-family: 'BadaBoom BB';
-    font-size: larger;
-    padding: 0 10px;
-}
-
-.TargetsModal button:hover {
-    cursor: pointer;
-    color: #fffab2;
-    background-color: black;
-}
-
 .target {
     display: grid;
     grid-template-columns: repeat(2, auto);
     align-items: center;
-}
 
-.target img {
-    height: 100px;
-}
+    img {
+        height: 100px;
+    }
 
-.target p {
-    margin: 0;
+    p {
+        margin: 0;
+    }
 }

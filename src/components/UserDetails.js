@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../utils/AuthContext';
-import styles from '../styles/UserDetails.module.css';
+import styles from '../styles/UserDetails.module.scss';
 import { Link } from 'react-router-dom';
 
 const UserDetails = () => {

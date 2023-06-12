@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import styles from '../styles/UserHeader.module.css';
+import styles from '../styles/UserHeader.module.scss';
 import { useAuth } from '../utils/AuthContext';
 
 const UserHeader = () => {
